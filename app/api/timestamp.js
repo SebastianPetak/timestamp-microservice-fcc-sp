@@ -1,15 +1,6 @@
 'use strict';
 
-var http = require('http');
-var express = require('express');
-var app = express();
-var path = require('path'); // added for homepage
-var port = Number(process.env.PORT || 8000);
-var routes = require('./app/routes/index.js');
-routes(app());
-
-/*
-function checkParam(p) {
+module.exports = function checkParam(p) {
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	
 	var unixRe = new RegExp('^-?[0-9]+$', 'gm');
@@ -36,15 +27,3 @@ function checkParam(p) {
 		}
 	}
 }
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/:date', function(req, res) {
-	res.set({'Content-Type': 'application/json'});
-	res.status(200);
-	var param = req.params.date;
-	var response = checkParam(param);
-	res.send(JSON.stringify(response));
-})
-*/
-app.listen(port);
