@@ -13,7 +13,7 @@ module.exports = function (dateParam) {
 			dateObj = new Date(dateParam);
 		}
 
-		// if d instance of Date is an Invalid Date, return null values,
+		// if dateObj instance of Date is an Invalid Date, return null values,
 		// else return values from dateObj, converting milliseconds to seconds (unix time)
 		if (dateObj == 'Invalid Date') {
 			resultDates = {

@@ -10,11 +10,13 @@ module.exports = function(app) {
 	app.get('/:date', function(req, res) {
 		var dateParam = req.params.date;
 		api(dateParam).then(function(result) {
+			// If result contains the unix and natural time
 			if (!_.isEmpty(result) && 'unix' in result && 'natural' in result) {
 				res.status(200).json({
 					unix: result.unix,
 					natural: result.natural
 				});
+			// if result what returned but it isn't formatted properly
 			} else {
 				winston.log('warn', 'api function returned an improperly formatted result');
 				res.status(500).json({
@@ -29,13 +31,3 @@ module.exports = function(app) {
 		});
 	});
 };
-/*
-    res.set({'Content-Type': 'application/json'});
-    res.status(200);
-    var param = req.params.date;
-    var response = api(dateParam);
-    res.send(JSON.stringify(response));
-
-  })
-}
-	*/
